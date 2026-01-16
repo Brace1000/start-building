@@ -1,0 +1,146 @@
+/* --- BASE STYLES --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: radial-gradient(circle at bottom, #2e0b45 0%, #1d0731 100%);
+    overflow: hidden;
+    perspective: 1000px; /* Enables 3D effects */
+}
+
+/* --- PARTICLE ANIMATIONS (Stars) --- */
+.stars, .stars2 {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    display: block;
+}
+
+/* Creating particles using box-shadows */
+.stars {
+    background: transparent;
+    width: 2px; height: 2px;
+    box-shadow: 400px 200px #FFF, 800px 400px #FFF, 1200px 600px #FFF, 200px 800px #FFF, 1600px 200px #FFF, 500px 900px #FFF;
+    animation: flyParticles 50s linear infinite;
+}
+
+.stars2 {
+    width: 1px; height: 1px;
+    box-shadow: 100px 100px #FFF, 900px 200px #FFF, 300px 500px #FFF, 1500px 800px #FFF, 700px 100px #FFF;
+    animation: flyParticles 100s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes flyParticles {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-2000px); }
+}
+
+/* --- CHATBOT CONTAINER --- */
+#chatbot-container {
+    width: 360px;
+    max-width: 90%;
+    background-color: #2e0b45;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    transition: transform 0.5s ease; /* Smooth 3D tilt */
+}
+
+/* 3D Hover Effect */
+#chatbot-container:hover {
+    transform: rotateX(5deg) rotateY(-5deg) scale(1.02);
+}
+
+/* --- STAGGERED SLIDING ANIMATIONS --- */
+
+/* 1. Header slides down from the top */
+.slide-down {
+    animation: slideDown 0.8s ease-out forwards;
+    color: #ffffff;
+    font-size: 22px;
+    text-align: center;
+    padding: 16px 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 2. Messages area fades in */
+.fade-in {
+    animation: fadeIn 1.2s ease-out forwards;
+}
+
+/* 3. Input area slides up from the bottom */
+.slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+    animation-delay: 0.3s; /* Starts slightly later */
+    opacity: 0; /* Hidden until animation starts */
+}
+
+/* --- UI COMPONENTS --- */
+#chatbox {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    background-color: #ffffff;
+}
+
+#messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+#input-area {
+    display: flex;
+    padding: 12px;
+    background: #fdfdfd;
+    border-top: 1px solid #eee;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 20px;
+    outline: none;
+    border: 1px solid #ddd;
+}
+
+#send-button {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    margin-left: 8px;
+    transition: all 0.3s;
+}
+
+#send-button:hover {
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* --- KEYFRAMES --- */
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
